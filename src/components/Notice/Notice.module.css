@@ -8,8 +8,10 @@
 
 /* REQUIRED BY THE TESTS: yellow background */
 .warning {
+   background-color: yellow;
 }
 
 /* REQUIRED BY THE TESTS: blue background */
 .info {
+   background-color: blue;
 }

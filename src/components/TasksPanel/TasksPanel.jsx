@@ -1,5 +1,6 @@
 // TasksPanel - the tasks of the selected member, with messages for the empty states.
 import styles from './TasksPanel.module.css'
+import Notice from '../Notice/Notice.jsx'
 
 /**
  * @param {object} props
@@ -8,8 +9,23 @@ import styles from './TasksPanel.module.css'
  * @param {(taskId: number) => void} props.onToggleTask - call it with task.id when a task checkbox is clicked
  */
 export default function TasksPanel({ member, tasks, onToggleTask }) {
-  // TODO: no member selected -> "Select a member to see their tasks"
-  // TODO: the member has no tasks -> "No tasks yet"
-  // TODO: otherwise, a loop over tasks: a checkbox (checked = done) + the title, inside a <label>
-  return null
+return (
+    <aside>
+      {!member ? (
+        <Notice  type="info" children="Select a member to see their tasks"/>
+      ) : (
+        <>
+          <p>{member.name}</p>
+          {tasks.length === 0 ? (
+            <Notice type="info" children="No tasks yet"/>
+          ) : (
+            tasks.map((task) => (
+              <label key={task.id}>
+                {task.title}
+                <input
+                  type="checkbox"
+                  checked={task.done}
+                  onChange={() => onToggleTask(task.id)}/></label>)))}</> )}
+    </aside>
+  )
 }
